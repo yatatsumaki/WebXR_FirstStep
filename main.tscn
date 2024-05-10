@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://qsfn2dyojnj"]
+
+[ext_resource type="Script" path="res://Main.gd" id="1_xruhv"]
+[ext_resource type="BoxMesh" uid="uid://1y17muyf60x2" path="res://01_box_mesh.tres" id="2_pfo2v"]
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_xruhv")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+
+[node name="LeftController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"left_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/LeftController"]
+mesh = ExtResource("2_pfo2v")
+
+[node name="RightController" type="XRController3D" parent="XROrigin3D"]
+tracker = &"right_hand"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/RightController"]
+mesh = ExtResource("2_pfo2v")
+skeleton = NodePath("../../LeftController")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Enter VR"
